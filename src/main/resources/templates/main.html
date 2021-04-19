@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:include="fragment_1::fragment_bootstrap_link">
+    <title>Список сообщений</title>
+</head>
+
+<body>
+<div th:include="fragment_1::fragment_bootstrap_link_2"></div>
+<div class="container mt-5 mb-5">
+    <form th:method="GET" th:action="@{/main}" class="row row-cols-lg-auto g-3 align-items-center mb-5">
+        <div class="col-12">
+            <label class="visually-hidden" for="inlineFormInputGroupUsername"></label>
+            <div class="input-group">
+                <input class="form-control" id="inlineFormInputGroupUsername" type="text" name="filter" th:placeholder="${filter}">
+            </div>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Найти</button>
+        </div>
+    </form>
+    <p>
+    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Добавить сообщение
+    </a>
+    </p>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+            <form th:method="POST" th:action="@{/main}" enctype="multipart/form-data">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="text" placeholder="Введите текст"/>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="tag" placeholder="Тэг"/>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" name="file">
+                </div>
+                <button type="submit" class="btn btn-primary">Добавить</button>
+            </form>
+        </div>
+    </div>
+    <div  class="row row-cols-1 row-cols-md-3 g-4">
+    <div th:each="message: ${messages}" >
+        <div class="col">
+            <div class="card">
+                <div th:if="${#bools.isTrue(message.getFilename())}">
+                    <img th:src="@{/img/{filename}(filename=${message.getFilename()})}" class="card-img-top">
+                </div>
+                <div class="card-body">
+                    <span th:text="${message.getText()}" class="card-text">VALUE</span>
+                    <i th:text="${message.getTag()}">VALUE</i>
+                </div>
+                <div class="card-footer">
+                    <strong th:text="${message.getAuthorName()}">VALUE</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</body>
+</html>

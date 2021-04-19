@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <link th:include="fragment_1::fragment_bootstrap_link">
+    <title>Spring Security Example </title>
+</head>
+<body>
+<div th:include="fragment_1::fragment_bootstrap_link_2"></div>
+<div class="container mt-5">
+<div th:if="${message}">
+    <span th:text="${message}">VALUE</span>
+</div>
+<form th:action="@{/registration}" th:method="POST">
+    <div class="row mb-3">
+        <label for="inputName" class="col-sm-2 col-form-label"> User Name : </label>
+        <div class="col-sm-6">
+            <input type="text" name="username" class="form-control" id="inputName"/>
+        </div>
+    </div >
+    <div class="row mb-3" >
+        <label for="inputPassword3" class="col-sm-2 col-form-label"> Password: </label>
+        <div class="col-sm-6">
+            <input type="password"  name="password" class="form-control" id="inputPassword3"/>
+        </div>
+    </div>
+    <div class="row mb-3" >
+        <label for="inputEmail" class="col-sm-2 col-form-label"> Email: </label>
+        <div class="col-sm-6">
+            <input type="email"  name="email" class="form-control" id="inputEmail"/>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" >Register</button>
+</form>
+</div>
+</body>
+</html>

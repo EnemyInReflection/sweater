@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:include="fragment_1::fragment_bootstrap_link">
+    <title>Title</title>
+</head>
+<body>
+<div th:include="fragment_1::fragment_bootstrap_link_2"></div>
+<div class="container mt-5">
+
+<!--<div th:each="user : ${users}">-->
+<!--    <span th:text="'name: ' + ${user.getUsername()}">VALUE</span>-->
+<!--    <div th:each="role : ${user.getRoles()}">-->
+<!--        <span th:text="'role: ' + ${role}">VALUE</span>-->
+<!--    </div>-->
+<!--    <a th:href="@{/user/{id}(id=${user.getId()})}">edit</a>-->
+<!--    <br>-->
+<!--</div>-->
+<!--<br><br>-->
+<h4>Users</h4>
+<table>
+    <th>Name</th>
+    <th>Role</th>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.getUsername()}">VALUE</td>
+        <td th:each="role : ${user.getRoles()}">
+            <i th:text="${role} + ', '">VALUE</i>
+        </td>
+        <td><a th:href="@{/user/{id}(id=${user.getId()})}">edit</a></td>
+    </tr>
+
+</table>
+
+</div>
+</body>
+</html>

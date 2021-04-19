@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:include="fragment_1::fragment_bootstrap_link">
+    <title>Title</title>
+</head>
+<body>
+<div th:include="fragment_1::fragment_bootstrap_link_2"></div>
+<div class="container mt-5">
+
+<h4>User edit</h4>
+<form th:action="@{/user}" th:method="POST" th:object="${user}">
+    <input type="text" name="username" th:field="*{username}">
+    <input type="hidden" name="userId" th:value="${user.getId()}">
+    <div th:each="role : ${roles}">
+       <label th:text="${role}"/>
+           <input type="checkbox" th:name="${role}" th:checked="${#arrays.contains(user.roles, role)}">
+    </div>
+    <button type="submit" >Save</button>
+</form>
+</div>
+</body>
+</html>
